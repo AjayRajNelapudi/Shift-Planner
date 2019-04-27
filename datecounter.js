@@ -40,5 +40,5 @@ function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDay) {
     return {"shift": shift, "day": day};
 }
 
-var shift = getShift(3, 'C', ['B', 'A', 'C'], "05/01/2019");
+var shift = getShift(3, 'C', ['B', 'A', 'C'], "05/18/2019");
 console.log(shift);
