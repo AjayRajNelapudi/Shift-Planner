@@ -1,22 +1,44 @@
 
 
-function countDays(begin, end) {
-    var beginDate = new Date(begin);
-    var endDate = new Date(end);
+function countDays(beginDate, endDate) {
     var difference = Math.abs(beginDate.getTime() - endDate.getTime());
-    var days = Math.ceil(difference / (1000 * 3600 * 25));
+    var days = Math.ceil(difference / (1000 * 3600 * 24));
 
     return days;
 }
 
-function getDayValue(day) {
-    var days = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+function daysToLastWeeklyOff(weeklyOffDay) {
+    var todayDate = new Date();
+    todayDate.setHours(0, 0, 0, 0);
+    var today = todayDate.getDay();
 
-    day = day.toLowerCase();
-    var dayValue = days.indexOf(day);
-    if (dayValue < 0 || dayValue > 7) {
-        throw new Error("'day' does not belong to " + days.join(", "));
+    var dayCounter = 0;
+    while (today != weeklyOffDay) {
+        weeklyOffDay = (weeklyOffDay + 1) % 7;
+        dayCounter++;
     }
 
-    return dayValue;
+    return dayCounter;
 }
+
+function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDay) {
+    var start = new Date();
+    start.setHours(0, 0, 0, 0);
+    start.setDate(start.getDate() - daysToLastWeeklyOff(weeklyOffDay));
+    var end = new Date(requiredDay);
+    end.setHours(0, 0, 0, 0);
+    var daysCount = countDays(start, end);
+    var weeksCount = daysCount / 7;
+    var shiftIndex = (parseInt(weeksCount) + shiftOrder.indexOf(currentShift)) % 3;
+    var shift = shiftOrder[shiftIndex];
+
+    var day = "week day";
+    if (end.getDay() == weeklyOffDay) {
+        day = "weekly off";
+    }
+
+    return {"shift": shift, "day": day};
+}
+
+var shift = getShift(3, 'C', ['B', 'A', 'C'], "05/01/2019");
+console.log(shift);
