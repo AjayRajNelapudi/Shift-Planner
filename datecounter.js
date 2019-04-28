@@ -32,10 +32,20 @@ function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate) {
 
     var day = "week day";
     if (end.getDay() == weeklyOffDay) {
-        day = "weekly off";
+        shift = "Next Shift " + shift;
+        day = "weekly off day";
     }
 
     return {"shift": shift, "day": day};
+}
+
+function renderOnScreen(shiftObject) {
+    document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">');
+    document.write('<body>');
+    document.write('<div class="jumbotron text - center">');
+    document.write('<h1>' + shiftObject.shift + '</h1>');
+    document.write('<h2>' + shiftObject.day + '</h2>');
+    document.write('</div> </body>');
 }
 
 function readAndFind() {
@@ -53,5 +63,7 @@ function readAndFind() {
     requiredDate = dateParts[1] + "/" + dateParts[2] + "/" + dateParts[0];
 
     var shiftObject = getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate);
-    document.write(shiftObject.shift, " ", shiftObject.day);
+    //document.write(shift.shift, " ", shift.day);
+
+    renderOnScreen(shiftObject);
 }
