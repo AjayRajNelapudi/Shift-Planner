@@ -1,5 +1,3 @@
-
-
 function countDays(beginDate, endDate) {
     var difference = Math.abs(beginDate.getTime() - endDate.getTime());
     var days = Math.ceil(difference / (1000 * 3600 * 24));
@@ -21,11 +19,11 @@ function daysToLastWeeklyOff(weeklyOffDay) {
     return dayCounter;
 }
 
-function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDay) {
+function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate) {
     var start = new Date();
     start.setHours(0, 0, 0, 0);
     start.setDate(start.getDate() - daysToLastWeeklyOff(weeklyOffDay));
-    var end = new Date(requiredDay);
+    var end = new Date(requiredDate);
     end.setHours(0, 0, 0, 0);
     var daysCount = countDays(start, end);
     var weeksCount = daysCount / 7;
@@ -40,5 +38,5 @@ function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDay) {
     return {"shift": shift, "day": day};
 }
 
-var shift = getShift(3, 'C', ['B', 'A', 'C'], "05/18/2019");
-console.log(shift);
+//var shift = getShift(3, 'C', ['B', 'A', 'C'], "05/18/2019");
+//console.log(shift);

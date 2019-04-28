@@ -1,47 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <title>Shift Planner</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        
+        <script type="text/javascript" src="datecounter.js"></script>
     </head>
 
     <body>
-
         <div class="jumbotron text-center">
             <h1>Shift Planner</h1>
             <p>A web app specifically tailored for Vizag Steel Plant Employees.</p>
         </div>
 
-        <div class="container">
-            <table class="table table-striped">
-                <tbody>
-                    <tr>
-                        <td>Select Weekly Off Day</td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    Day
-                                </button>
-                                <div class="dropdown-menu">
-                                    <button class="dropdown-item" type="button">Sunday</button>
-                                    <button class="dropdown-item" type="button">Monday</button>
-                                    <button class="dropdown-item" type="button">Tuesday</button>
-                                    <button class="dropdown-item" type="button">Wednesday</button>
-                                    <button class="dropdown-item" type="button">Thursday</button>
-                                    <button class="dropdown-item" type="button">Friday</button>
-                                    <button class="dropdown-item" type="button">Saturday</button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="container" style="width: 500px;">
+            <div class="form-group">
+                <label>Select Weekly Off Day</label>
+                <select class="form-control" id="off-day-select">
+                    <option value=0>Sunday</option>
+                    <option value=1>Monday</option>
+                    <option value=2>Tuesday</option>
+                    <option value=3>Wednesday</option>
+                    <option value=4>Thursday</option>
+                    <option value=5>Friday</option>
+                    <option value=6>Saturday</option>
+                </select>
+            </div>
 
+            <div class="form-group">
+                <label>Select current shift</label>
+                <select class="form-control" id="current-shift-select">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option avlue="C">C</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Select Shift Order</label>
+                <select class="form-control" id="shift-order-select">
+                    <option value=0>A B C</option>
+                    <option value=1>A C B</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Enter date to find shift</label><br>
+                <input type="date" id="requiredDate" style="border-radius: 5px;">
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="findShift()">Get Shift</button>
+            </div>
+
+            <div class="form-group">
+                <script type="text/javascript">
+                    function findShift() {
+                        var weeklyOffDay = document.getElementById("off-day-select").value;
+                        var currentShift = document.getElementById("current-shift-select").value;
+                        var shiftOrder;
+                        var shiftOrderSelect = document.getElementById("shift-order-select").value;
+                        if (shiftOrderSelect == 0) {
+                            shiftOrder = ['A', 'B', 'C'];
+                        } else {
+                            shiftOrder = ['A', 'C', 'B'];
+                        }
+                        var requiredDate = document.getElementById("requiredDate").value;
+                    }
+                </script>
+            </div>
+        </div>
     </body>
 
 </html>
