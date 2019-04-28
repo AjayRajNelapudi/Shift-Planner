@@ -14,7 +14,7 @@
             <p>A web app specifically tailored for Vizag Steel Plant Employees.</p>
         </div>
 
-        <div class="container" style="width: 500px;">
+        <div class="container">
             <div class="form-group">
                 <label>Select Weekly Off Day</label>
                 <select class="form-control" id="off-day-select">
@@ -47,28 +47,11 @@
 
             <div class="form-group">
                 <label>Enter date to find shift</label><br>
-                <input type="date" id="requiredDate" style="border-radius: 5px;">
+                <input type="date" id="requiredDate" style="border-radius: 5px; background-color: ghostwhite;">
             </div>
 
             <div class="form-group">
-                <button type="button" class="btn btn-primary" onclick="findShift()">Get Shift</button>
-            </div>
-
-            <div class="form-group">
-                <script type="text/javascript">
-                    function findShift() {
-                        var weeklyOffDay = document.getElementById("off-day-select").value;
-                        var currentShift = document.getElementById("current-shift-select").value;
-                        var shiftOrder;
-                        var shiftOrderSelect = document.getElementById("shift-order-select").value;
-                        if (shiftOrderSelect == 0) {
-                            shiftOrder = ['A', 'B', 'C'];
-                        } else {
-                            shiftOrder = ['A', 'C', 'B'];
-                        }
-                        var requiredDate = document.getElementById("requiredDate").value;
-                    }
-                </script>
+                <button type="button" class="btn btn-primary" onclick="readAndFind()">Get Shift</button>
             </div>
         </div>
     </body>

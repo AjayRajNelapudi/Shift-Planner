@@ -38,5 +38,20 @@ function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate) {
     return {"shift": shift, "day": day};
 }
 
-//var shift = getShift(3, 'C', ['B', 'A', 'C'], "05/18/2019");
-//console.log(shift);
+function readAndFind() {
+    var weeklyOffDay = parseInt(document.getElementById("off-day-select").value);
+    var currentShift = document.getElementById("current-shift-select").value;
+    var shiftOrder;
+    var shiftOrderSelect = document.getElementById("shift-order-select").value;
+    if (shiftOrderSelect == 0) {
+        shiftOrder = ['A', 'B', 'C'];
+    } else {
+        shiftOrder = ['A', 'C', 'B'];
+    }
+    var requiredDate = document.getElementById("requiredDate").value;
+    var dateParts = requiredDate.split("-");
+    requiredDate = dateParts[1] + "/" + dateParts[2] + "/" + dateParts[0];
+
+    var shiftObject = getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate);
+    document.write(shiftObject.shift, " ", shiftObject.day);
+}
