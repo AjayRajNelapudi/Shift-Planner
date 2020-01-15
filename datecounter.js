@@ -42,7 +42,19 @@ function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate) {
 }
 
 function renderOnScreen(shiftObject) {
-    alert(shiftObject.shift + "\n" + shiftObject.day);
+    // alert(shiftObject.shift + "\n" + shiftObject.day);
+    alert = document.createElement("div");
+    alert.setAttribute("class", "alert alert-success text-center");
+
+    shiftContent = document.createTextNode(shiftObject.shift);
+    shiftDayContent = document.createTextNode(shiftObject.day);
+    br = document.createElement("br");
+
+    alert.appendChild(shiftContent);
+    alert.appendChild(br);
+    alert.appendChild(shiftDayContent);
+
+    document.body.appendChild(alert);
 }
 
 function readAndFind() {
