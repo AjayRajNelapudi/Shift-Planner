@@ -1,3 +1,5 @@
+
+
 function countDays(beginDate, endDate) {
     var difference = Math.abs(beginDate.getTime() - endDate.getTime());
     var days = Math.ceil(difference / (1000 * 3600 * 24));
@@ -27,31 +29,20 @@ function getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate) {
     end.setHours(0, 0, 0, 0);
     var daysCount = countDays(start, end);
     var weeksCount = daysCount / 7;
-    var shiftIndex = (parseInt(weeksCount) + shiftOrder.indexOf(currentShift)) % 3;
-    var shift = shiftOrder[shiftIndex] + " Shift";
+    var currentShiftIndex = (parseInt(weeksCount) + shiftOrder.indexOf(currentShift)) % 3;
+    var shift = shiftOrder[currentShiftIndex] + " Shift";
 
-    var day = "week day";
+    var day = "Week Day";
     if (end.getDay() == weeklyOffDay) {
-        shift = "Next is " + shift;
-        day = "weekly off day";
+        shift = "Next: " + shift;
+        day = "Weekly Off Day";
     }
 
     return {"shift": shift, "day": day};
 }
 
 function renderOnScreen(shiftObject) {
-    // document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">');
-    // document.write('<body>');
-    // document.write('<div class="jumbotron text - center">');
-    // document.write('<h1>' + shiftObject.shift + '</h1>');
-    // document.write('<h2>' + shiftObject.day + '</h2>');
-    // document.write('</div> </body>');
-
-    // shiftLabel = document.getElementById("shift");
-    // var shift = document.createTextNode(shiftObject.shift + " " + shiftObject.day);
-    // shiftLabel.appendChild(shift);
-
-    alert(shiftObject.shift + " " + shiftObject.day);
+    alert(shiftObject.shift + "\n" + shiftObject.day);
 }
 
 function readAndFind() {
@@ -69,7 +60,6 @@ function readAndFind() {
     requiredDate = dateParts[1] + "/" + dateParts[2] + "/" + dateParts[0];
 
     var shiftObject = getShift(weeklyOffDay, currentShift, shiftOrder, requiredDate);
-    //document.write(shift.shift, " ", shift.day);
 
     renderOnScreen(shiftObject);
 }
